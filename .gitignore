@@ -1,0 +1,11 @@
+﻿# Build artifacts
+release/*.zip
+release/build/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Python / misc
+__pycache__/
+*.pyc
