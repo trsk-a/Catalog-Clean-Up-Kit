@@ -1,0 +1,40 @@
+﻿{
+  "template_id": "ccuk_v1_main_annotated",
+  "template_version": "1.0.0-beta",
+  "inherits": "ccuk_v1_main_core",
+  "annotations": [
+    {
+      "module": "M1-M3",
+      "purpose": "Input, normalization, and preprocessing",
+      "implementation_hint": "Use LoadImage + optional resize/denoise node only when input fails acceptance thresholds."
+    },
+    {
+      "module": "M4",
+      "purpose": "Main clean-up",
+      "implementation_hint": "Constrain denoise to preserve identity and avoid shape drift."
+    },
+    {
+      "module": "M5-M7",
+      "purpose": "Background, edges, shadows",
+      "implementation_hint": "Attach optional branch for neutral background and simple contact shadow refinement."
+    },
+    {
+      "module": "M8-M11",
+      "purpose": "Consistency, validation, export",
+      "implementation_hint": "Apply output checklist and ratio export utility before commercial delivery."
+    }
+  ],
+  "recommended_defaults": {
+    "seed": 123456789,
+    "steps": 24,
+    "cfg": 4.5,
+    "denoise": 0.35,
+    "sampler_name": "dpmpp_2m",
+    "scheduler": "karras"
+  },
+  "guardrails": [
+    "Reject out-of-scope cases early (reflective extremes, difficult transparency).",
+    "Never claim microtypography-perfect reconstruction in V1.",
+    "If edge halos persist after two attempts, classify as usable-with-revision or out-of-scope."
+  ]
+}

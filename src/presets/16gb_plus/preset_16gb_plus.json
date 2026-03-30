@@ -1,0 +1,17 @@
+﻿{
+  "preset_id": "ccuk_v1_16gb_plus",
+  "vram_tier": "16GB+",
+  "target": "quality_reference",
+  "defaults": {
+    "steps": 30,
+    "cfg": 4.8,
+    "denoise": 0.38,
+    "batch_size": 1,
+    "resolution_max_long_edge": 3000,
+    "use_refiner": true
+  },
+  "tradeoffs": [
+    "Higher runtime",
+    "Best detail retention in V1 envelope"
+  ]
+}

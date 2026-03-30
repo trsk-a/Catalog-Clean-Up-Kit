@@ -1,0 +1,17 @@
+﻿{
+  "preset_id": "ccuk_v1_8gb",
+  "vram_tier": "8GB",
+  "target": "stability_first",
+  "defaults": {
+    "steps": 18,
+    "cfg": 4.0,
+    "denoise": 0.32,
+    "batch_size": 1,
+    "resolution_max_long_edge": 1600,
+    "use_refiner": false
+  },
+  "tradeoffs": [
+    "Lower detail recovery vs 12/16+ GB",
+    "Safer memory profile"
+  ]
+}

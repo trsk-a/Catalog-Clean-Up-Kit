@@ -1,0 +1,51 @@
+﻿{
+  "template_id": "ccuk_v1_neutral_bg_core",
+  "template_version": "1.0.0-beta",
+  "type": "comfyui_prompt_template",
+  "description": "Neutral background variant with conservative edge and shadow treatment.",
+  "nodes": {
+    "1": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "__INPUT_IMAGE__",
+        "upload": "image"
+      }
+    },
+    "2": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "__OPTIONAL_MASK_IMAGE__",
+        "upload": "image"
+      }
+    },
+    "3": {
+      "class_type": "ImageCompositeMasked",
+      "inputs": {
+        "destination": "__NEUTRAL_BG_IMAGE__",
+        "source": ["1", 0],
+        "mask": ["2", 0],
+        "x": 0,
+        "y": 0,
+        "resize_source": true
+      }
+    },
+    "4": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "filename_prefix": "ccuk_v1_neutral_bg",
+        "images": ["3", 0]
+      }
+    }
+  },
+  "required_placeholders": [
+    "__INPUT_IMAGE__",
+    "__NEUTRAL_BG_IMAGE__"
+  ],
+  "optional_placeholders": [
+    "__OPTIONAL_MASK_IMAGE__"
+  ],
+  "notes": [
+    "Use a generated solid neutral background image from recipe docs if no explicit neutral image is provided.",
+    "Keep shadows subtle and local; avoid dramatic stylization in V1."
+  ]
+}

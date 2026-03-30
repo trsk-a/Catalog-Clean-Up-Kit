@@ -1,0 +1,87 @@
+﻿{
+  "template_id": "ccuk_v1_main_core",
+  "template_version": "1.0.0-beta",
+  "type": "comfyui_prompt_template",
+  "description": "Main clean-up pipeline template for rigid/semi-rigid product photos.",
+  "scope": "catalog/ecommerce/social_static",
+  "nodes": {
+    "1": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": "__INPUT_IMAGE__",
+        "upload": "image"
+      }
+    },
+    "2": {
+      "class_type": "CheckpointLoaderSimple",
+      "inputs": {
+        "ckpt_name": "__BASE_CHECKPOINT__"
+      }
+    },
+    "3": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "clip": ["2", 1],
+        "text": "__POSITIVE_PROMPT_BASE__"
+      }
+    },
+    "4": {
+      "class_type": "CLIPTextEncode",
+      "inputs": {
+        "clip": ["2", 1],
+        "text": "__NEGATIVE_PROMPT_BASE__"
+      }
+    },
+    "5": {
+      "class_type": "VAEEncode",
+      "inputs": {
+        "pixels": ["1", 0],
+        "vae": ["2", 2]
+      }
+    },
+    "6": {
+      "class_type": "KSampler",
+      "inputs": {
+        "model": ["2", 0],
+        "positive": ["3", 0],
+        "negative": ["4", 0],
+        "latent_image": ["5", 0],
+        "seed": "__SEED__",
+        "steps": "__STEPS__",
+        "cfg": "__CFG__",
+        "sampler_name": "dpmpp_2m",
+        "scheduler": "karras",
+        "denoise": "__DENOISE__"
+      }
+    },
+    "7": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": ["6", 0],
+        "vae": ["2", 2]
+      }
+    },
+    "8": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "filename_prefix": "ccuk_v1_main",
+        "images": ["7", 0]
+      }
+    }
+  },
+  "required_placeholders": [
+    "__INPUT_IMAGE__",
+    "__BASE_CHECKPOINT__",
+    "__POSITIVE_PROMPT_BASE__",
+    "__NEGATIVE_PROMPT_BASE__",
+    "__SEED__",
+    "__STEPS__",
+    "__CFG__",
+    "__DENOISE__"
+  ],
+  "notes": [
+    "This is a portable template. Pin exact checkpoints/nodes in compatibility matrix before release.",
+    "Use VRAM preset files to set steps/cfg/denoise defaults.",
+    "If segmentation nodes are added, keep node count minimal and stable."
+  ]
+}

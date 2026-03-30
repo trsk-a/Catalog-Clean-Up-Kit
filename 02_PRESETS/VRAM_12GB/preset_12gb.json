@@ -1,0 +1,16 @@
+﻿{
+  "preset_id": "ccuk_v1_12gb",
+  "vram_tier": "12GB",
+  "target": "balanced_quality",
+  "defaults": {
+    "steps": 24,
+    "cfg": 4.5,
+    "denoise": 0.35,
+    "batch_size": 1,
+    "resolution_max_long_edge": 2048,
+    "use_refiner": false
+  },
+  "tradeoffs": [
+    "Balanced quality/time for most V1 in-scope cases"
+  ]
+}

@@ -1,0 +1,42 @@
+﻿{
+  "template_id": "ccuk_v1_export_validation",
+  "template_version": "1.0.0-beta",
+  "type": "export_validation_template",
+  "description": "Validation and export routine for 1:1, 4:5, and 9:16 deliverables.",
+  "inputs": {
+    "source_image": "__FINAL_IMAGE__",
+    "classification": "approved|usable_with_revision|out_of_scope",
+    "preset_name": "8gb|12gb|16gb_plus",
+    "operator_notes": "__NOTES__"
+  },
+  "validation_checks": [
+    "product_identity_preserved",
+    "no_severe_halo",
+    "neutral_or_controlled_bg",
+    "simple_credible_shadow",
+    "no_obvious_ai_artifacts"
+  ],
+  "exports": [
+    {
+      "ratio": "1:1",
+      "resolution": "__EXPORT_1_1__",
+      "format": "png"
+    },
+    {
+      "ratio": "4:5",
+      "resolution": "__EXPORT_4_5__",
+      "format": "jpg"
+    },
+    {
+      "ratio": "9:16",
+      "resolution": "__EXPORT_9_16__",
+      "format": "jpg"
+    }
+  ],
+  "naming_pattern": "ccuk_{case_id}_{preset}_{ratio}_{status}",
+  "status_gate": {
+    "approved": "Allowed for catalog/shop/social static",
+    "usable_with_revision": "Allowed after minor touch-up",
+    "out_of_scope": "Do not deliver as V1 success"
+  }
+}
