@@ -29,5 +29,5 @@ if ($approved -ge 7 -and $blockers -eq 0) {
 }
 else {
   Write-Host 'QA gate: FAIL (needs iteration)'
-  exit 2
+  throw 'QA summary gate failed.'
 }

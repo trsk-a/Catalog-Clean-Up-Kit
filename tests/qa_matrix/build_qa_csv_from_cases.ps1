@@ -10,39 +10,52 @@ if ($caseDirs.Count -eq 0) {
   throw "No case directories found under $CasesRoot"
 }
 
+function Get-MapValue {
+  param(
+    [hashtable]$Map,
+    [string]$Key
+  )
+  if ($Map.ContainsKey($Key)) {
+    return $Map[$Key]
+  }
+  return ''
+}
+
 $rows = @()
 foreach ($dir in $caseDirs) {
   $caseId = $dir.Name
-  $notes = Join-Path $dir.FullName 'case_notes.md'
+  $notesPath = Join-Path $dir.FullName 'case_notes.md'
 
-  if (-not (Test-Path $notes)) {
+  if (-not (Test-Path $notesPath)) {
     Write-Warning "Missing case_notes.md for $caseId. Skipping."
     continue
   }
 
-  $content = Get-Content $notes -Raw
+  $lineMap = @{}
+  $lines = Get-Content $notesPath
 
-  function Extract-Value {
-    param([string]$Text, [string]$Label)
-    $regex = [regex]::new("(?im)^\s*-\s*$([regex]::Escape($Label))\s*:\s*(.+)$")
-    $m = $regex.Match($Text)
-    if ($m.Success) { return $m.Groups[1].Value.Trim() }
-    return ''
+  foreach ($line in $lines) {
+    $match = [regex]::Match($line, '^\s*-\s*([a-zA-Z0-9_]+)\s*:\s*(.*)$')
+    if ($match.Success) {
+      $key = $match.Groups[1].Value.Trim().ToLowerInvariant()
+      $value = $match.Groups[2].Value.Trim()
+      $lineMap[$key] = $value
+    }
   }
 
   $rows += [PSCustomObject]@{
     case_id = $caseId
-    product_type = Extract-Value -Text $content -Label 'product_type'
-    input_quality = Extract-Value -Text $content -Label 'input_quality'
-    input_long_edge_px = Extract-Value -Text $content -Label 'input_long_edge_px'
-    preset_tier = Extract-Value -Text $content -Label 'preset_tier'
-    recipe = Extract-Value -Text $content -Label 'recipe'
-    classification = Extract-Value -Text $content -Label 'classification'
-    blocker_defect = Extract-Value -Text $content -Label 'blocker_defect'
-    tolerable_defect = Extract-Value -Text $content -Label 'tolerable_defect'
-    runtime_seconds = Extract-Value -Text $content -Label 'runtime_seconds'
-    reviewer = Extract-Value -Text $content -Label 'reviewer'
-    notes = Extract-Value -Text $content -Label 'notes'
+    product_type = (Get-MapValue -Map $lineMap -Key 'product_type')
+    input_quality = (Get-MapValue -Map $lineMap -Key 'input_quality')
+    input_long_edge_px = (Get-MapValue -Map $lineMap -Key 'input_long_edge_px')
+    preset_tier = (Get-MapValue -Map $lineMap -Key 'preset_tier')
+    recipe = (Get-MapValue -Map $lineMap -Key 'recipe')
+    classification = (Get-MapValue -Map $lineMap -Key 'classification')
+    blocker_defect = (Get-MapValue -Map $lineMap -Key 'blocker_defect')
+    tolerable_defect = (Get-MapValue -Map $lineMap -Key 'tolerable_defect')
+    runtime_seconds = (Get-MapValue -Map $lineMap -Key 'runtime_seconds')
+    reviewer = (Get-MapValue -Map $lineMap -Key 'reviewer')
+    notes = (Get-MapValue -Map $lineMap -Key 'notes')
   }
 }
 

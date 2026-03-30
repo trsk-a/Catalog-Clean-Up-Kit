@@ -1,11 +1,11 @@
-﻿case_id,product_type,input_quality,input_long_edge_px,preset_tier,recipe,classification,blocker_defect,tolerable_defect,runtime_seconds,reviewer,notes
-case_01,,,,,,,,,,,
-case_02,,,,,,,,,,,
-case_03,,,,,,,,,,,
-case_04,,,,,,,,,,,
-case_05,,,,,,,,,,,
-case_06,,,,,,,,,,,
-case_07,,,,,,,,,,,
-case_08,,,,,,,,,,,
-case_09,,,,,,,,,,,
-case_10,,,,,,,,,,,
+﻿"case_id","product_type","input_quality","input_long_edge_px","preset_tier","recipe","classification","blocker_defect","tolerable_defect","runtime_seconds","reviewer","notes"
+"case_01","pending_label","pending_review","1280","pending_run","pending_run","pending_workflow_run","","","0","codex_preload","placeholder outputs generated from input only (no ComfyUI inference yet)"
+"case_02","pending_label","pending_review","1280","pending_run","pending_run","pending_workflow_run","","","0","codex_preload","placeholder outputs generated from input only (no ComfyUI inference yet)"
+"case_03","pending_label","pending_review","1280","pending_run","pending_run","pending_workflow_run","","","0","codex_preload","placeholder outputs generated from input only (no ComfyUI inference yet)"
+"case_04","pending_label","pending_review","1280","pending_run","pending_run","pending_workflow_run","","","0","codex_preload","placeholder outputs generated from input only (no ComfyUI inference yet)"
+"case_05","pending_label","pending_review","1280","pending_run","pending_run","pending_workflow_run","","","0","codex_preload","placeholder outputs generated from input only (no ComfyUI inference yet)"
+"case_06","pending_label","pending_review","1280","pending_run","pending_run","pending_workflow_run","","","0","codex_preload","placeholder outputs generated from input only (no ComfyUI inference yet)"
+"case_07","pending_label","pending_review","1280","pending_run","pending_run","pending_workflow_run","","","0","codex_preload","placeholder outputs generated from input only (no ComfyUI inference yet)"
+"case_08","pending_label","pending_review","1280","pending_run","pending_run","pending_workflow_run","","","0","codex_preload","placeholder outputs generated from input only (no ComfyUI inference yet)"
+"case_09","pending_label","pending_review","1280","pending_run","pending_run","pending_workflow_run","","","0","codex_preload","placeholder outputs generated from input only (no ComfyUI inference yet)"
+"case_10","pending_label","pending_review","1280","pending_run","pending_run","pending_workflow_run","","","0","codex_preload","placeholder outputs generated from input only (no ComfyUI inference yet)"

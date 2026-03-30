@@ -6,6 +6,9 @@ Populate each `case_XX` folder with:
 - `output_neutral_bg.*`
 - `case_notes.md`
 
+Current repo may include placeholder outputs generated from input-only bootstrapping.
+These placeholders are not valid as final V1 quality evidence and must be replaced by real workflow inference outputs.
+
 ## Case Table
 | case_id | product_type | preset | classification | notes |
 |---|---|---|---|---|
