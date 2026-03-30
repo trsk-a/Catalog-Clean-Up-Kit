@@ -1,10 +1,16 @@
 ﻿# Environment Reference
 
 ## Folder Expectations
-- ComfyUI root: `PIN_ME_PATH`
-- models/checkpoints
-- models/vae
-- custom_nodes
+- ComfyUI root used for freeze: `D:\ComfyUI`
+- `models/checkpoints`
+- `models/vae`
+- `custom_nodes`
+
+## Runtime Snapshot
+- Python: `3.12.6`
+- NVIDIA Driver: `591.74`
+- CUDA Runtime: `13.1`
+- GPU: `NVIDIA GeForce RTX 2080 Ti (11264 MiB)`
 
 ## Minimum VRAM Tiers
 - 8 GB: constrained profile
