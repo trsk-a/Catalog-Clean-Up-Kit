@@ -1,6 +1,9 @@
 ﻿# Build artifacts
 release/*.zip
 release/build/
+release/comfy_runtime_*.log
+_comfy_input/
+_comfy_output/
 
 # OS
 Thumbs.db
